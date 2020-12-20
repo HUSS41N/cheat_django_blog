@@ -406,7 +406,7 @@ header .navbar {
 	padding: 40px;
 	border-right: 1px solid #eee;
 	border-left: 1px solid #eee;
-	border-bottom: 1px solid #eee;
+	/* border-bottom: 1px solid #eee; */
 }
 
 .blog-posts .down-content span {

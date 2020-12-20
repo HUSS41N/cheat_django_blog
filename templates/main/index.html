@@ -1,9 +1,9 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load humanize %}
 
 
 {% block content %}
-
         <div class="main-banner header-text">
             <div class="container-fluid">
             <div class="owl-banner owl-carousel">
@@ -18,10 +18,10 @@
                             <div class="meta-category">
                                 <span>{{blogpost.category}}</span>
                             </div>
-                            <a href=""><h4>{{blogpost.title}}</h4></a>
+                            <a href="{% url 'single_blog_post' blogpost.id %}"><h4>{{blogpost.title}}</h4></a>
                             <ul class="post-info">
                                 <li><a href="#">{{blogpost.blogger}}</a></li>
-                                <li><a href="#">May 12, 2020</a></li>
+                                <li><a href="#">{{blogpost.blog_date | timesince }}</a></li>
                                 <li><a href="#">12 Comments</a></li>
                             </ul>
                             </div>
@@ -52,20 +52,20 @@
                                     <img src="{{blogpost.photo_main.url}}" alt="">
                                 </div>
                                 <div class="down-content">
-                                    <span>Lifestyle</span>
-                                    <a href="post-details.html"><h4>{{blogpost.title}}</h4></a>
+                                    <span>{{blogpost.category}}</span>
+                                    <a href='{% url "single_blog_post" blogpost.id %}'><h4>{{blogpost.title}}</h4></a>
                                     <ul class="post-info">
                                     <li><a href="#">{{blogpost.blogger}}</a></li>
-                                    <li><a href="#">{{blogpost.blog_date}}</a></li>
+                                    <li><a href="#">{{blogpost.blog_date | timesince }}</a></li>
                                     <li><a href="#">12 Comments</a></li>
                                     </ul>
-                                    <p>{{blogpost.content |truncatechars:255 |safe}}</p>
+                                    <p class="p">{{blogpost.content |striptags|truncatechars:140}}</p>
                                     <div class="post-options">
                                     <div class="row">
                                         <div class="col-6">
                                         <ul class="post-tags">
                                             <li><i class="fa fa-tags"></i></li>
-                                            <li><a href="#">{{blogpost.category}}</a>,</li>
+                                            <li><a href="#">{{blogpost.category}}</a></li>
                                         </ul>
                                         </div>
                                         <div class="col-6">
@@ -141,23 +141,6 @@
                             </ul>
                         </div>     
                         {% endif %}
-<!--                             
-                        <div class="content">
-                            <ul>
-                            <li><a href="post-details.html">
-                                <h5>Vestibulum id turpis porttitor sapien facilisis scelerisque</h5>
-                                <span>May 31, 2020</span>
-                            </a></li>
-                            <li><a href="post-details.html">
-                                <h5>Suspendisse et metus nec libero ultrices varius eget in risus</h5>
-                                <span>May 28, 2020</span>
-                            </a></li>
-                            <li><a href="post-details.html">
-                                <h5>Swag hella echo park leggings, shaman cornhole ethical coloring</h5>
-                                <span>May 14, 2020</span>
-                            </a></li>
-                            </ul>
-                        </div> -->
                         </div>
                     </div>
                     </div>
